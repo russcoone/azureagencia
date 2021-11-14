@@ -3,10 +3,37 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var db = require("./config/db.js");
+
+require("dotenv").config({ path: "variables.env" });
 
 var index = require("./routes/index");
 
 var app = express();
+
+// conectar la base de datos
+// db.authenticate()
+//   .then(() => console.log("Base de datos conectada"))
+//   .catch((error) => console.log(error));
+
+// db.authenticate()
+//   .then(() => {
+//     console.log("bade de datos conectada");
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+db.authenticate()
+  .then(function () {
+    console.log("Base de datos conectada");
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+// Agregar body parser para leer los datos del formulario
+app.use(express.urlencoded({ extended: true }));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

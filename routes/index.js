@@ -1,31 +1,33 @@
 var express = require("express");
+var {
+  guardarTestimonial,
+} = require("../controllers/testimonialControllers.js");
+
+var {
+  paginaInicio,
+  paginaContacto,
+  paginaServicios,
+  paginaNosotros,
+  paginaTestimoniales,
+  paginaViajes,
+  paginaDetalleviaje,
+} = require("../controllers/paginasControllers.js");
+
 var router = express.Router();
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("index", {
-    pagina: "Inicio",
-  });
-});
+router.get("/", paginaInicio);
 
-});
-router.get("/servicios", function (req, res, next) {
-  res.render("servicios", {
-    pagina: "Servicio",
-  });
-});
+router.get("/contacto", paginaContacto);
 
+router.get("/servicios", paginaServicios);
 
-router.get("/testimoniales", function (req, res, next) {
-  res.render("testimoniales", {
-    pagina: "Testimoniales",
-  });
-});
+router.get("/nosotros", paginaNosotros);
 
-router.get("/viajes", function (req, res, next) {
-  res.render("Viajes", {
-    pagina: "viajes",
-  });
-});
+router.get("/viajes", paginaViajes);
+router.get("/viajes/:slug", paginaDetalleviaje);
+
+router.get("/testimoniales", paginaTestimoniales);
+router.post("/testimoniales", guardarTestimonial);
 
 module.exports = router;
