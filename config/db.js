@@ -2,12 +2,12 @@ var Sequeliza = require("sequelize");
 require("dotenv").config({ path: "variables.env" });
 
 const db = new Sequeliza(
-  process.env.BD_NOMBRE,
-  process.env.BD_USER,
-  process.env.BD_PASS,
+  process.env.DBNAME,
+  process.env.DBUSER,
+  process.env.DBPASS,
   {
-    host: process.env.BD_HOST,
-    port: process.env.BD_PORT,
+    host: process.env.DBHOST,
+    port: process.env.DBPORT,
     dialect: "postgres",
     define: {
       timestamps: false,
